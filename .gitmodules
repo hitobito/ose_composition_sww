@@ -3,3 +3,7 @@
 	url = https://github.com/hitobito/hitobito.git
   branch = master
 
+[submodule "hitobito_sww"]
+	path = hitobito_sww
+	url = https://github.com/hitobito/hitobito_sww.git
+  branch = master
