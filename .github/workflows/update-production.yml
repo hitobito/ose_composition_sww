@@ -32,3 +32,23 @@ jobs:
       stage: production
       target_branch: ${{ inputs.branch }}
     secrets: inherit
+
+  version:
+    uses: hitobito/hitobito/.github/workflows/remote-version.yml@master
+    needs:
+      - release
+    with:
+      repository_url: ${{ github.repository}}
+      stage: production
+
+  deploy-staging:
+    uses: hitobito/hitobito/.github/workflows/update_image.yml@master
+    needs:
+      - version
+    with:
+      repository: gitlab.puzzle.ch/pitc_hit/deployments/hitobito.git
+      file: ./deployments/hit-sww-staging/kustomization.yaml
+      image_tag: ${{ needs.version.outputs.version }}
+      image_ref: rails
+      identifier: hit-sww-staging
+    secrets: inherit
