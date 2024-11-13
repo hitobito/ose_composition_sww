@@ -38,7 +38,7 @@ jobs:
     needs:
       - release
     with:
-      repository_url: ${{ github.repository}}
+      repository_url: https://github.com/${{ github.repository}}.git
       stage: production
 
   deploy-staging:
